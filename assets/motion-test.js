@@ -54,7 +54,8 @@
   var hero = $('.hero');
   if (hero) {
     var out = { target: hero, offset: ['start start', 'end start'] };
-    scroll(animate('.hero-art', { y: [0, 140], scale: [1, 0.9] }, { ease: 'linear' }), out);
+    if ($('.hero-art')) scroll(animate('.hero-art', { y: [0, 140], scale: [1, 0.9] }, { ease: 'linear' }), out);
+    if ($('.hero-bg .art-photo')) scroll(animate('.hero-bg .art-photo', { y: [0, 120], scale: [1, 1.08] }, { ease: 'linear' }), out);
     scroll(animate('.hero-copy', { y: [0, -60], opacity: [1, 0] }, { ease: 'linear' }), out);
   }
   // Bespoke / Our Story art drifts against the scroll. Uses the separate `translate` property so
