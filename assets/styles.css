@@ -259,9 +259,6 @@ a:hover > .text-link, .text-link:hover { gap: 12px; color: var(--accent); }
 .circle-btn { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; border: 1px solid rgba(var(--text-rgb), .7); background: rgba(var(--hi-rgb), .08); backdrop-filter: blur(6px); transition: background .3s, transform .3s var(--ease); }
 .circle-btn svg { width: 18px; height: 18px; fill: none; stroke: var(--text); stroke-width: 1.6; }
 .circle-btn:hover { background: rgba(var(--hi-rgb), .25); transform: scale(1.08); }
-.scroll-cue { position: absolute; left: 50%; bottom: 24px; width: 22px; height: 36px; margin-left: -11px; border: 1px solid rgba(var(--text-rgb), .45); border-radius: 12px; z-index: 3; }
-.scroll-cue span { position: absolute; left: 50%; top: 7px; width: 2px; height: 7px; margin-left: -1px; border-radius: 1px; background: var(--text); animation: cue 2s ease-in-out infinite; }
-@keyframes cue { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(12px); } }
 @keyframes floaty { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-16px) rotate(2deg); } }
 @keyframes artIn { from { opacity: 0; transform: scale(.9) translateY(30px); } }
 @keyframes rise { from { opacity: 0; transform: translateY(26px); } }
@@ -554,7 +551,6 @@ body.overlay-open .scrim { opacity: 1; visibility: visible; }
   .hero-sub { font-size: 15px; margin-bottom: 20px; }
   .hero-ctrl { left: 16px; right: 16px; bottom: 40px; }
   .hero-dots { margin-right: auto; }
-  .scroll-cue { display: none; }
   .sec h2, .promise h2, .newsletter h2 { font-size: 28px; }
   .products { grid-template-columns: repeat(2, 1fr); gap: 28px 12px; }
   .cats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
