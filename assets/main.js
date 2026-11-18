@@ -258,7 +258,36 @@
     if (n) { n.hidden = !bag.length; n.textContent = bag.length; }
     if (list) list.innerHTML = bag.map(function (b) { return '<li><span>' + b.name + '</span><span>' + b.price + '</span></li>'; }).join('');
     if (empty) empty.hidden = !!bag.length;
+    var foot = $('.bag-foot');
+    if (foot) foot.hidden = !bag.length;
+    if (!bag.length) closeConfirm();
   }
+
+  /* bag: checkout + clear (with an "are you sure?" bubble) */
+  var confirmEl = $('#clear-confirm'), clearBtn = $('.bag-clear');
+  function openConfirm() {
+    if (!confirmEl) return;
+    confirmEl.hidden = false; clearBtn.setAttribute('aria-expanded', 'true');
+    requestAnimationFrame(function () { confirmEl.classList.add('show'); var no = $('[data-clear-no]', confirmEl); if (no) no.focus(); });
+  }
+  function closeConfirm(refocus) {
+    if (!confirmEl || confirmEl.hidden) return;
+    confirmEl.classList.remove('show'); confirmEl.hidden = true; clearBtn.setAttribute('aria-expanded', 'false');
+    if (refocus) clearBtn.focus();
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.bag-clear')) { e.preventDefault(); if (confirmEl.hidden) openConfirm(); else closeConfirm(); return; }
+    if (e.target.closest('[data-clear-no]')) { closeConfirm(true); return; }
+    if (e.target.closest('[data-clear-yes]')) {
+      bag = []; store.set('mxn-bag', '[]'); closeConfirm(); renderBag(); toast('Your bag has been cleared'); return;
+    }
+    if (e.target.closest('[data-checkout]')) { toast('Secure checkout is coming soon'); return; }
+    if (confirmEl && !confirmEl.hidden && !e.target.closest('.confirm-bubble')) closeConfirm();
+  });
+  // Escape closes the bubble first, before it would close the whole bag panel
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && confirmEl && !confirmEl.hidden) { e.stopImmediatePropagation(); closeConfirm(true); }
+  }, true);
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-add]');
     if (!b) return;
