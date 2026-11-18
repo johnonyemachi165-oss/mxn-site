@@ -139,7 +139,7 @@
       slides.forEach(function (s, i) { s.classList.toggle('active', i === cur); s.setAttribute('aria-hidden', i === cur ? 'false' : 'true'); });
       dots.forEach(function (d, i) { d.classList.toggle('on', i === cur); });
     };
-    var auto = function () { clearInterval(timer); if (!reduce) timer = setInterval(function () { go(cur + 1); }, 7000); };
+    var auto = function () { clearInterval(timer); if (!reduce) timer = setInterval(function () { go(cur + 1); }, 4000); };
     hero.addEventListener('click', function (e) {
       var b = e.target.closest('[data-hero], [data-slide]');
       if (!b) return;
