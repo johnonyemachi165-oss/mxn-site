@@ -276,7 +276,6 @@
     var more = $('.load-more'), countEl = $('.count b'), form = $('.filter-form'), sortSel = $('.sort select');
     cards.forEach(function (c, i) { c.dataset.order = i; });
     var apply = function () {
-      var metals = $$('input[name=metal]:checked', form).map(function (i) { return i.value; });
       var ready = $('input[name=ready]', form).checked;
       var range = ($('input[name=price]:checked', form) || {}).value || 'any';
       var lo = 0, hi = Infinity;
@@ -292,19 +291,13 @@
       sorted.forEach(function (c) {
         grid.appendChild(c);
         var p = +c.dataset.price;
-        var ok = (!metals.length || metals.indexOf(c.dataset.metal) > -1) && (!ready || c.dataset.ready === '1') && p >= lo && p <= hi;
+        var ok = (!ready || c.dataset.ready === '1') && p >= lo && p <= hi;
         c.classList.toggle('filtered-out', !ok);
         if (ok) { visible++; c.classList.toggle('paged-out', visible > shown); c.classList.remove('pending'); }
       });
       if (countEl) countEl.textContent = visible;
       if (more) { more.textContent = visible <= shown ? "You've seen every piece" : 'Load more'; more.disabled = visible <= shown; }
     };
-    $$('[data-quick-metal]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var box = $('input[name=metal][value="' + b.getAttribute('data-quick-metal') + '"]', form);
-        box.checked = !box.checked; b.classList.toggle('on', box.checked); apply();
-      });
-    });
     form.addEventListener('change', apply);
     form.addEventListener('reset', function () { setTimeout(apply, 0); });
     sortSel.addEventListener('change', apply);
