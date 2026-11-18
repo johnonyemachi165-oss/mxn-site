@@ -153,7 +153,7 @@
   }
 
   /* ---------- scroll motion: background orbs, hero depth, parallax art ---------- */
-  var parallax = $$('.parallax');
+  var parallax = document.body.classList.contains('mtest') ? [] : $$('.parallax'); // Motion test page drives its own
   var ticking = false;
   function onScroll() {
     ticking = false;

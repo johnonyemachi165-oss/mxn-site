@@ -743,3 +743,12 @@ body { font-size: 13px; }
 .ch-art .art-photo { border-radius: 50%; }
 .ch-art.wide { inset: 0; width: auto; height: auto; }
 .ch-art.wide .art-photo { border-radius: 0; }
+
+/* ---------- Motion test page (samples/motion): Motion drives these, so CSS steps aside ---------- */
+.mtest .card-media { transition: box-shadow .6s var(--ease), border-color .6s; }
+.mtest .card:hover .card-media { transform: none; }
+.mtest .card-img { transition: none; }
+.mtest .hero-art, .mtest .hero-copy { transform: none; }
+.mtest .tab-panel.fade-in { animation: none; }
+.fly-ghost { position: fixed; inset: auto; z-index: 120; margin: 0; overflow: hidden; border-radius: 12px; pointer-events: none; box-shadow: 0 20px 40px rgba(0, 0, 0, .45); }
+.fly-ghost img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
