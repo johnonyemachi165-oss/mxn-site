@@ -149,7 +149,9 @@
     });
     hero.addEventListener('mouseenter', function () { clearInterval(timer); });
     hero.addEventListener('mouseleave', auto);
-    auto();
+    // with the opening intro playing, the slider starts once the page is revealed
+    if (doc.classList.contains('intro-on')) document.addEventListener('mxn:introdone', auto, { once: true });
+    else auto();
   }
 
   /* ---------- scroll motion: background orbs, hero depth, parallax art ---------- */

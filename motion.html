@@ -9,10 +9,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Syncopate:wght@400;700&display=swap">
-<link rel="stylesheet" href="assets/styles.css?v=mwm4z5dg">
+<link rel="stylesheet" href="assets/styles.css?v=mwm5dtqc">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23332c4d'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='serif' font-size='15' fill='%23b8d3db'%3EM%3C/text%3E%3C/svg%3E">
 </head>
 <body class="page-home mtest">
+<div class="intro" id="intro" aria-hidden="true"><div class="intro-bg"></div><div class="intro-logo"><span class="intro-word">MXN<svg class="intro-star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.7 6.4 5 10.9 12 12-7 1.1-11.3 5.6-12 12-.7-6.4-5-10.9-12-12 7-1.1 11.3-5.6 12-12z"/></svg></span><span class="intro-sub">Fine Jewellery</span></div></div>
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-on','intro-hold');else document.getElementById('intro').remove();</script>
 <section class="cookie" id="cookie" aria-labelledby="cookie-h" hidden>
 <h2 id="cookie-h">COOKIE CONSENT</h2>
 <p>We use cookies to personalise your experience and understand how the site is used. We won't use them for these purposes unless you accept. Read our <a href="privacy-policy.html">Privacy Policy</a>.</p>
@@ -367,8 +369,22 @@
 <form class="stack-form" data-thanks="Welcome to the MXN List."><input required type="email" placeholder="Enter your email" aria-label="Email"><button class="btn btn-solid" type="submit">Request access</button></form>
 <button class="link-btn" type="button" data-close>No thanks</button></div></div></div>
 <div class="toast" role="status" aria-live="polite"></div>
-<script src="assets/main.js?v=mwm4z5dg" defer></script>
+<script src="assets/main.js?v=mwm5dtqc" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/motion@14.9.0/dist/motion.js" defer></script>
-<script src="assets/motion-test.js?v=mwm4z5dg" defer></script>
+<script src="assets/motion-test.js?v=mwm5dtqc" defer></script>
+<script>(function(){var d=document.documentElement,intro=document.getElementById('intro');if(!intro||!d.classList.contains('intro-on'))return;
+var done=false;function finish(){if(done)return;done=true;d.classList.remove('intro-on','intro-hold');d.classList.add('intro-reveal');if(intro.parentNode)intro.remove();
+var s=document.querySelector('.hero-slide.active');if(s){s.classList.remove('active');void s.offsetWidth;s.classList.add('active');}
+document.dispatchEvent(new Event('mxn:introdone'));}
+function play(){var logo=intro.querySelector('.intro-logo'),bg=intro.querySelector('.intro-bg'),t=document.querySelector('.site-header .logo');
+d.classList.add('intro-reveal');d.classList.remove('intro-hold');
+if(!t||!logo.animate){setTimeout(finish,600);return;}
+var a=logo.getBoundingClientRect(),b=t.getBoundingClientRect(),k=b.width/a.width;
+var ease='cubic-bezier(.65,0,.35,1)';
+logo.animate([{transform:'none'},{transform:'translate('+(b.left-a.left)+'px,'+(b.top-a.top)+'px) scale('+k+')'}],{duration:950,easing:ease,fill:'forwards'});
+bg.animate([{opacity:1},{opacity:0}],{duration:850,delay:150,easing:'ease-out',fill:'forwards'});
+setTimeout(finish,980);}
+var star=intro.querySelector('.intro-star'),started=false;function go(){if(started)return;started=true;setTimeout(play,120);}
+star.addEventListener('animationend',go);setTimeout(go,3200);setTimeout(finish,5600);})();</script>
 </body>
 </html>
